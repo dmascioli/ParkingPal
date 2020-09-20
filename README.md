@@ -5,7 +5,7 @@
 
 | Member               | Email                    |
 | -------------------- | ------------------------ |
-| Darren               | darren.mascioli@pitt.edu |
+| Darren Mascioli      | darren.mascioli@pitt.edu |
 | Noah Fenton          |                          |
 | Alexander Fisher     |                          |
 | Vasilis Ethan Sarris |                          |
@@ -13,9 +13,9 @@
 
 # Datasets
 
-## Aggregated Parking Transactions
+## Parking Purchases
 
-https://data.wprdc.org/dataset/parking-transactions
+https://data.wprdc.org/dataset/parking-purchases
 
 ## Pittsburgh Parking Meters and Payment Points
 
