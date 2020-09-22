@@ -1,0 +1,3 @@
+FLASK_APP=parkingpal.py
+FLASK_ENV=debug
+FLASK_DEBUG=1

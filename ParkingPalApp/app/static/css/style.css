@@ -1,0 +1,10 @@
+.jumbotron {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(0, 0, 0, 0.6) 100%
+    ),
+    url(../assets/parking.jpg);
+  background-size: cover;
+  background-position: 0% 20%;
+}
