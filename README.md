@@ -6,9 +6,9 @@
 | Member               | Email                    |
 | -------------------- | ------------------------ |
 | Darren Mascioli      | darren.mascioli@pitt.edu |
-| Noah Fenton          |                          |
-| Alexander Fisher     |                          |
-| Vasilis Ethan Sarris |                          |
+| Noah Fenton          | ntfenton715@gmail.com    |
+| Alexander Fisher     | asf45@pitt.edu           |
+| Vasilis Ethan Sarris | vas82@pitt.edu           |
 
 
 # Datasets
