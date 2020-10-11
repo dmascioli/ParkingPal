@@ -1,9 +1,6 @@
 {% extends 'bootstrap/base.html' %} {% block styles %} {{super()}}
 
-<link
-  rel="stylesheet"
-  href="{{url_for('.static', filename='css/style.css')}}"
-/>
+<link rel="stylesheet" href="{{url_for('.static', filename='css/style.css')}}" />
 
 {% endblock %} {% if title %}
 <title>{{ title }} - ParkingPal</title>
@@ -13,23 +10,14 @@
 <header>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <a class="navbar-brand" href="{{ url_for('home') }}">ParkingPal</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarCollapse"
-      aria-controls="navbarCollapse"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+      aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="{{ url_for('home') }}"
-            >Find Parking <span class="sr-only"></span
-          ></a>
+          <a class="nav-link" href="{{ url_for('map') }}">Find Parking <span class="sr-only"></span></a>
         </li>
       </ul>
 
