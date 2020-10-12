@@ -12,6 +12,7 @@ range_options = [(.1, '.1 miles'),
 
 
 class FindParkingForm(FlaskForm):
+    location = StringField('Street Address')
     date = DateField('Date', validators=[DataRequired()])
     time = TimeField('Time')
     distance = SelectField(
