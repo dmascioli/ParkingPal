@@ -28,9 +28,10 @@ def map():
             zoom = 15
         else:
             zoom = 14
-        
+
         close_meters = find_nearest_meters(user_location, radius)
         for meter in close_meters:
-            meter_availability.append({'id':meter['id'], 'lat':meter['lat'], 'lon':meter['lon'], 'prediction':.5})
+            meter_availability.append(
+                {'id': meter['id'], 'lat': meter['lat'], 'lon': meter['lon'], 'prediction': .5})
         pass
     return render_template("map.html", form=form, user_location=user_location, zoom=zoom, meters=meter_availability)
