@@ -14,6 +14,30 @@
     <br>
     <div id="map" style="height: 800px;"></div>
 
+    <div id="accordion" class="mt-5">
+        {% for meter in meters %}
+        <div class="card">
+          <div class="card-header" id="meter{{loop.index}}">
+            <h5 class="mb-0">
+              <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{loop.index}}" aria-expanded="false" aria-controls="collapse{{loop.index}}">
+                Meter {{meter.id}}
+              </button>
+            </h5>
+          </div>
+      
+          <div id="collapse{{loop.index}}" class="collapse" aria-labelledby="meter{{loop.index}}">
+            <div class="card-body">
+              <p>
+                  Lon: {{meter.lon}}<br>
+                  Lat: {{meter.lat}}<br>
+                  Prediction: {{meter.prediction}}
+              </p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
 </div>
 
 <script type="text/javascript">
