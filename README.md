@@ -28,3 +28,11 @@ https://data.wprdc.org/dataset/zone-and-lot-attributes
 ## Street Sweeping Routes
 
 https://data.wprdc.org/dataset/street-sweeping-routes
+
+# Virtual Environment
+https://packaging.python.org/tutorials/installing-packages/#creating-virtual-environments  
+
+1. Activate the virtual environment with `.\env\Scripts\activate`
+2. Confirm that only virtual environment packages are loaded with `pip freeze`
+3. Install project packages with `pip install -r requirements.txt` 
+4. Deactivate virtual environment with `deactivate`
