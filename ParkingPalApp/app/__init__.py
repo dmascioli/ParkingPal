@@ -1,4 +1,3 @@
-
 from app.errors import bp as errors_bp
 from flask import Flask
 from flask_bootstrap import Bootstrap
