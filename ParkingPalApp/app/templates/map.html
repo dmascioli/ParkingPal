@@ -97,12 +97,12 @@
     });
 
     meters.forEach(function(element) {
-        if(element.prediction > .8)
-            markers.push(new L.Marker([element.lat,element.lon], {icon: greenIcon}).bindPopup(element.prediction));
-        else if(element.prediction > .5)
-            markers.push(new L.Marker([element.lat,element.lon], {icon: yellowIcon}).bindPopup(element.prediction));
+        if(element.prediction > .1)
+            markers.push(new L.Marker([element.lat,element.lon], {icon: greenIcon}).bindPopup(element.prediction.toString()));
+        else if(element.prediction > .05)
+            markers.push(new L.Marker([element.lat,element.lon], {icon: yellowIcon}).bindPopup(element.prediction.toString()));
         else
-            markers.push(new L.Marker([element.lat,element.lon], {icon: redIcon}).bindPopup(element.prediction));
+            markers.push(new L.Marker([element.lat,element.lon], {icon: redIcon}).bindPopup(element.prediction.toString()));
         markers[markers.length - 1].addTo(map);
     });
     
