@@ -4,8 +4,12 @@
 
 {%block app_content%}
 
-<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+crossorigin=""></script>
 
 <div class="container">
 
@@ -14,16 +18,40 @@
     <br>
     <div id="map" style="height: 800px;"></div>
 
+    <div id="accordion" class="mt-5">
+        {% for meter in meters %}
+        <div class="card">
+          <div class="card-header" id="meter{{loop.index}}">
+            <h5 class="mb-0">
+              <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{loop.index}}" aria-expanded="false" aria-controls="collapse{{loop.index}}">
+                Meter {{meter.id}}
+              </button>
+            </h5>
+          </div>
+      
+          <div id="collapse{{loop.index}}" class="collapse" aria-labelledby="meter{{loop.index}}">
+            <div class="card-body">
+              <p>
+                  Lon: {{meter.lon}}<br>
+                  Lat: {{meter.lat}}<br>
+                  Prediction: {{meter.prediction}}
+              </p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
 </div>
 
 <script type="text/javascript">
     // The first parameter are the coordinates of the center of the map
     // The second parameter is the zoom level
-    loc = '{{user_location}}'.replace('(','').replace(')','').replace(' ','');
-    lat = parseFloat(loc.split(',')[0]);
-    lon = parseFloat(loc.split(',')[1]);
+    loc = {{user_location | tojson }};
+    lat = loc[0];
+    lon = loc[1];
     cords = [lat,lon];
-    var map = L.map('map').setView(cords, parseInt('{{zoom}}}'));
+    var map = L.map('map').setView(cords, {{zoom}});
 
     // {s}, {z}, {x} and {y} are placeholders for map tiles
     // {x} and {y} are the x/y of where you are on the map
@@ -33,12 +61,7 @@
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
     });
 
-    var meters = '{{meters}}';
-    meters = meters.replace('[','').replace(']','')
-    meters = meters.replaceAll('&#39;','');
-    meters = meters.replaceAll('{','').replaceAll('},','}');
-    meters = meters.replaceAll(' ','');
-    meters = meters.split('}');
+    var meters = {{meters | tojson}};
     var markers = [];
 
     var greenIcon = new L.Icon({
@@ -77,18 +100,15 @@
         shadowSize: [41, 41]
     });
 
-    for(i = 0; i < meters.length-1; i++) {
-        lat = parseFloat(meters[i].split(',')[1].split(':')[1]);
-        lon = parseFloat(meters[i].split(',')[2].split(':')[1]);
-        prediction = meters[i].split(',')[3].split(':')[1];
-        if(prediction > .8)
-            markers.push(new L.Marker([lat,lon], {icon: greenIcon}).bindPopup(prediction));
-        else if(prediction > .5)
-            markers.push(new L.Marker([lat,lon], {icon: yellowIcon}).bindPopup(prediction));
+    meters.forEach(function(element) {
+        if(element.prediction > .1)
+            markers.push(new L.Marker([element.lat,element.lon], {icon: greenIcon}).bindPopup(element.prediction.toString()));
+        else if(element.prediction > .05)
+            markers.push(new L.Marker([element.lat,element.lon], {icon: yellowIcon}).bindPopup(element.prediction.toString()));
         else
-            markers.push(new L.Marker([lat,lon], {icon: redIcon}).bindPopup(prediction));
-        markers[i].addTo(map);
-    }
+            markers.push(new L.Marker([element.lat,element.lon], {icon: redIcon}).bindPopup(element.prediction.toString()));
+        markers[markers.length - 1].addTo(map);
+    });
     
     if(markers.length != 0)
         new L.Marker([cords[0],cords[1]], {icon:blueIcon}).addTo(map);

@@ -1,7 +1,8 @@
 from app import app
+from calendar import day_name
 from flask import render_template, flash, redirect, url_for, request
 from app.forms import FindParkingForm
-from app.nearest_meters import find_nearest_meters, get_geolocation
+from app.meters import find_nearest_meters, get_geolocation, get_prediction, get_zone
 
 
 @app.route("/")
@@ -31,7 +32,14 @@ def map():
 
         close_meters = find_nearest_meters(user_location, radius)
         for meter in close_meters:
+            prediction = get_prediction({
+                'day_of_week': day_name[form.date.data.weekday()],
+                'is_holiday': str(False),
+                'meter': meter['id'],
+                'month': f'{form.date.data.month:02}',
+                'time': form.time.data.isoformat(),
+                'zone': get_zone(meter['id'])
+            })
             meter_availability.append(
-                {'id': meter['id'], 'lat': meter['lat'], 'lon': meter['lon'], 'prediction': .5})
-        pass
+                {'id': meter['id'], 'lat': meter['lat'], 'lon': meter['lon'], 'prediction': prediction})
     return render_template("map.html", form=form, user_location=user_location, zoom=zoom, meters=meter_availability)

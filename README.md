@@ -36,3 +36,8 @@ https://packaging.python.org/tutorials/installing-packages/#creating-virtual-env
 2. Confirm that only virtual environment packages are loaded with `pip freeze`
 3. Install project packages with `pip install -r requirements.txt` 
 4. Deactivate virtual environment with `deactivate`
+
+# Development Server
+1. `$env:FLASK_APP = 'main.py'`
+2. `$env:FLASK_ENV='development'`
+3. `flask run`
