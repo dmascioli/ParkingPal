@@ -10,3 +10,40 @@
   background-position: 0% 20%;
 }
 
+/* Map */
+/* Form */
+#form-column h1 {
+  font-size: 1.5rem;
+}
+
+#form-column #submit {
+  width: 100%;
+  margin-top: 1em;
+}
+
+/* Meter List */
+#list {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  z-index: 999;
+  max-height: 80%;
+}
+
+#list > .card {
+  width: 33%;
+}
+
+#list > .card > .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+}
+
+#list-button {
+  font-size: 1.5rem;
+}

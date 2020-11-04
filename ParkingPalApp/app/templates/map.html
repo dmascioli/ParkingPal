@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% import 'bootstrap/wtf.html' as wtf %}
 
-
 {%block app_content%}
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
@@ -11,36 +10,52 @@ crossorigin=""/>
 integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
 crossorigin=""></script>
 
-<div class="container">
+<div class="container-fluid">
 
-    <h1 style="text-align:center; margin:1em;">Where do you want to park?</h1>
-    {{ wtf.quick_form(form) }}
-    <br>
-    <div id="map" style="height: 800px;"></div>
-
-    <div id="accordion" class="mt-5">
-        {% for meter in meters %}
-        <div class="card">
-          <div class="card-header" id="meter{{loop.index}}">
-            <h5 class="mb-0">
-              <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{loop.index}}" aria-expanded="false" aria-controls="collapse{{loop.index}}">
-                Meter {{meter.id}}
+  <div class="row">
+    <div class="col-2" id="form-column">
+      <h1 class="mb-3">Where do you want to park?</h1>
+      {{ wtf.quick_form(form) }}
+    </div>
+    <div class="col">
+      <div id="map" style="height: 90vh">
+        <div id="list">
+          <div class="card">
+            <div class="card-body py-1">
+              <button class="btn btn-link w-100" id="list-button" type="button" data-toggle="collapse" data-target="#list-collapse" aria-expanded="false" aria-controls="list-collapse">
+                <i class="fas fa-ellipsis-h"></i>
               </button>
-            </h5>
-          </div>
-      
-          <div id="collapse{{loop.index}}" class="collapse" aria-labelledby="meter{{loop.index}}">
-            <div class="card-body">
-              <p>
-                  Lon: {{meter.lon}}<br>
-                  Lat: {{meter.lat}}<br>
-                  Prediction: {{meter.prediction}}
-              </p>
+              <div class="collapse w-100" id="list-collapse">
+                <div id="accordion w-100">
+                  {% for meter in meters %}
+                  <div class="card">
+                    <div class="card-header" id="meter{{loop.index}}">
+                      <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{loop.index}}" aria-expanded="false" aria-controls="collapse{{loop.index}}">
+                          Meter {{meter.id}}
+                        </button>
+                      </h5>
+                    </div>
+                
+                    <div id="collapse{{loop.index}}" class="collapse" aria-labelledby="meter{{loop.index}}">
+                      <div class="card-body">
+                        <p>
+                            Lon: {{meter.lon}}<br>
+                            Lat: {{meter.lat}}<br>
+                            Prediction: {{meter.prediction}}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div> 
             </div>
-          </div>
+          </div> 
         </div>
-        {% endfor %}
       </div>
+    </div>
+  </div>
 
 </div>
 
@@ -118,3 +133,5 @@ crossorigin=""></script>
 </script>
 
 {%endblock%}
+
+{% block footer %}{%endblock%}
