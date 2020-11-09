@@ -26,6 +26,20 @@ body {
   margin-top: 1em;
 }
 
+#mobile-form {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  justify-content: center;
+  width: 100%;
+  z-index: 999;
+}
+
+#mobile-form > .card {
+  width: 33%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
 /* Meter List */
 #list {
   position: absolute;
@@ -40,6 +54,7 @@ body {
 
 #list > .card {
   width: 33%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 #list > .card > .card-body {
@@ -77,4 +92,23 @@ body {
   padding: 0;
   width: 100%;
   text-align: left;
+}
+
+/* Leaflet.js overrides */
+.leaflet-control-zoom.leaflet-bar.leaflet-control {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  border: none;
+}
+
+.leaflet-control-attribution.leaflet-control {
+  /* ALWAYS attribute authors in production, hiding for now */
+  display: none;
+}
+
+/* Responsiveness */
+@media (max-width: 1199px) {
+  #list > .card,
+  #mobile-form > .card {
+    width: 50%;
+  }
 }
