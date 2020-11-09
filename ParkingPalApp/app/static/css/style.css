@@ -105,10 +105,57 @@ body {
   display: none;
 }
 
+#map.leaflet-container {
+  font-size: 1rem;
+}
+
 /* Responsiveness */
 @media (max-width: 1199px) {
   #list > .card,
   #mobile-form > .card {
     width: 50%;
+  }
+
+}
+
+@media (max-width: 991px) {
+  #list > .card > .card-body,
+  #mobile-form > .card > .card-body {
+    padding: 0.5rem;
+  }
+  
+  #map.leaflet-container {
+    font-size: 0.75rem;
+  }
+
+  #mobile-form .form-group {
+    margin-bottom: 0.5rem;
+  }
+
+  #mobile-form .col {
+    margin-bottom: 0.5rem;
+  }
+
+  #mobile-form .form-control,
+  #mobile-form .btn {
+    padding: .1rem .5rem;
+  }
+
+  #mobile-form label {
+    margin-bottom: 0.25rem;
+  }
+
+  #mobile-form #submit {
+    margin-top: 0.25em;
+  }
+
+  #list-collapse #accordion .card-header button {
+    font-size: 1rem;
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+
+  #list {
+    max-height: 50%;
   }
 }
