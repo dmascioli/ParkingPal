@@ -16,6 +16,10 @@ body {
 }
 
 /* Map */
+#map {
+  height: 90vh;
+}
+
 /* Form */
 #form-column h1 {
   font-size: 1.5rem;
@@ -28,7 +32,7 @@ body {
 
 #mobile-form {
   position: absolute;
-  top: 2px;
+  top: 0.5rem;
   left: 0;
   justify-content: center;
   width: 100%;
@@ -64,14 +68,64 @@ body {
   overflow-y: auto;
 }
 
-#list > .card > .card-header {
-  padding: 0;
+#list > .card > .card-header,
+#mobile-form > .card > .card-footer {
   background-color: transparent;
   border: none;
 }
 
-#list-button {
-  font-size: 1.5rem;
+#list-button,
+#form-button {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#list-button:hover,
+#list-button:active,
+#list-button:focus,
+#form-button:hover,
+#form-button:active,
+#form-button:focus {
+  text-decoration: none;
+}
+
+#list-button::after {
+  content: 'Hide suggested meters';
+  flex-grow: 2;
+}
+
+#form-button::after {
+  content: 'Hide search form';
+  flex-grow: 2;
+}
+
+#list-button.collapsed::after {
+  content: 'Show suggested meters';
+}
+
+#form-button.collapsed::after {
+  content: 'Show search form';
+}
+
+#list-button .fa-chevron-down,
+#list-button.collapsed .fa-chevron-up {
+  display: block;
+}
+
+#form-button .fa-chevron-down,
+#form-button.collapsed .fa-chevron-up {
+  display: none;
+}
+
+#list-button .fa-chevron-up,
+#list-button.collapsed .fa-chevron-down {
+  display: none;
+}
+
+#form-button .fa-chevron-up,
+#form-button.collapsed .fa-chevron-down {
+  display: block;
 }
 
 #list-collapse #accordion .card {
@@ -120,7 +174,9 @@ body {
 
 @media (max-width: 991px) {
   #list > .card > .card-body,
-  #mobile-form > .card > .card-body {
+  #mobile-form .card-body,
+  #list > .card > .card-header,
+  #mobile-form .card-footer {
     padding: 0.5rem;
   }
   
@@ -157,5 +213,17 @@ body {
 
   #list {
     max-height: 50%;
+  }
+
+  #map {
+    height: 100vh;
+  }
+
+}
+
+@media (max-width: 575px) {
+  #mobile-form > .card,
+  #list > .card {
+    width: 70%;
   }
 }

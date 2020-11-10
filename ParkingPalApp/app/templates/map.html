@@ -18,44 +18,55 @@ crossorigin=""></script>
       <h1 class="mb-3">Where do you want to park?</h1>
       {{ wtf.quick_form(form) }}
     </div>
-    <div class="col">
-      <div id="map" style="height: 90vh">
+    <div class="col px-0">
+      <div id="map">
         <!-- Mobile form -->
         <div class="d-flex d-lg-none" id="mobile-form">
           <div class="card">
-            <div class="card-body">
-              <form method="POST" action="{{url_for('map')}}">
-                <div class="form-group">
-                  {{ form.location.label }} 
-                  {{ form.location(class="form-control") }}
-                </div>
-                <div class="form-group mb-0">
-                  <div class="row">
-                    <div class="col">
-                      {{ form.date.label }} 
-                      {{ form.date(class="form-control") }}
-                    </div>
-                    <div class="col">
-                      {{ form.time.label }} 
-                      {{ form.time(class="form-control") }}
+            <div class="collapse show" id="form-collapse">
+              <div class="card-body pb-3">
+                <form method="POST" action="{{url_for('map')}}">
+                  <div class="form-group">
+                    {{ form.location.label }} 
+                    {{ form.location(class="form-control") }}
+                  </div>
+                  <div class="form-group mb-0">
+                    <div class="row">
+                      <div class="col">
+                        {{ form.date.label }} 
+                        {{ form.date(class="form-control") }}
+                      </div>
+                      <div class="col">
+                        {{ form.time.label }} 
+                        {{ form.time(class="form-control") }}
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  {{ form.distance.label }} 
-                  {{ form.distance(class="form-control") }}
-                </div>
-                {{ form.submit(class="btn btn-primary w-100") }}
-              </form>
+                  <div class="form-group">
+                    {{ form.distance.label }} 
+                    {{ form.distance(class="form-control") }}
+                  </div>
+                  {{ form.submit(class="btn btn-primary w-100") }}
+                </form>
+              </div>
+            </div>
+            <div class="card-footer py-0">
+              <button class="btn btn-link w-100 px-0" id="form-button" type="button" data-toggle="collapse" data-target="#form-collapse" aria-expanded="true" aria-controls="form-collapse">
+                <i class="fas fa-chevron-up"></i>
+                <i class="fas fa-chevron-down"></i>
+              </button>
             </div>
           </div>
         </div>
+
         <!-- Meter list -->
+        {% if meters %}
         <div id="list">
           <div class="card">
-            <div class="card-header">
-              <button class="btn btn-link w-100" id="list-button" type="button" data-toggle="collapse" data-target="#list-collapse" aria-expanded="false" aria-controls="list-collapse">
-                <i class="fas fa-ellipsis-h"></i>
+            <div class="card-header py-0">
+              <button class="btn btn-link w-100 px-0 collapsed" id="list-button" type="button" data-toggle="collapse" data-target="#list-collapse" aria-expanded="false" aria-controls="list-collapse">
+                <i class="fas fa-chevron-up"></i>
+                <i class="fas fa-chevron-down"></i>
               </button>
             </div>
             <div class="card-body py-1">
@@ -85,6 +96,7 @@ crossorigin=""></script>
             </div>
           </div> 
         </div>
+        {% endif %}
       </div>
     </div>
   </div>
