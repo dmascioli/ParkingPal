@@ -2,7 +2,8 @@ from app import app
 from calendar import day_name
 from flask import render_template, flash, redirect, url_for, request
 from app.forms import FindParkingForm
-from app.meters import find_nearest_meters, get_geolocation, get_prediction, get_zone
+from app.meters import find_nearest_meters, get_geolocation, get_prediction, get_zone, async_get_meter_predictions, thread_get_meter_predictions
+import asyncio
 
 
 @app.route("/")
@@ -30,16 +31,32 @@ def map():
         else:
             zoom = 14
 
+        # possibly use sql instead of dataframe here
         close_meters = find_nearest_meters(user_location, radius)
-        for meter in close_meters:
-            prediction = get_prediction({
-                'day_of_week': day_name[form.date.data.weekday()],
-                'is_holiday': str(False),
-                'meter': meter['id'],
-                'month': f'{form.date.data.month:02}',
-                'time': form.time.data.isoformat(),
-                'zone': get_zone(meter['id'])
-            })
-            meter_availability.append(
-                {'id': meter['id'], 'lat': meter['lat'], 'lon': meter['lon'], 'prediction': prediction})
+
+        # make this async
+
+        # for meter in close_meters:
+        #     meter_req = {
+        #         'day_of_week': day_name[form.date.data.weekday()],
+        #         'is_holiday': str(False),
+        #         'meter': meter['id'],
+        #         'month': f'{form.date.data.month:02}',
+        #         'time': form.time.data.isoformat(),
+        #         'zone': get_zone(meter['id'])
+        #     }
+        #     prediction = get_prediction(meter_req)
+        #     meter_availability.append(
+        #         {'id': meter['id'], 'lat': meter['lat'], 'lon': meter['lon'], 'prediction': prediction})
+
+        day = day_name[form.date.data.weekday()]
+        month = f'{form.date.data.month:02}'
+        time = form.time.data.isoformat()
+
+        # async for slightly better speed boost
+        meter_availability = asyncio.run(async_get_meter_predictions(
+            close_meters, day, month, time))
+
+        # meter_availability = thread_get_meter_predictions(
+        #     close_meters, day, month, time)
     return render_template("map.html", form=form, user_location=user_location, zoom=zoom, meters=meter_availability)

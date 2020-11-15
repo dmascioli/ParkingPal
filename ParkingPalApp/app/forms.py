@@ -10,6 +10,13 @@ range_options = [(.1, '.1 miles'),
                  (.75, '.75 miles'),
                  (1, '1 mile')]
 
+# range_options = [(.02, '1 block'),
+#                 (.05, '2 blocks'),
+#                 (.07, '4 blocks'),
+#                 (.1, '5 blocks'),
+#                 (.5, '1/2 mile')]
+#
+
 
 class FindParkingForm(FlaskForm):
     location = StringField('Street Address')
