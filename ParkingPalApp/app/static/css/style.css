@@ -212,11 +212,7 @@ body {
   }
 
   #list {
-    max-height: 50%;
-  }
-
-  #map {
-    height: 100vh;
+    max-height: 40%;
   }
 
 }
