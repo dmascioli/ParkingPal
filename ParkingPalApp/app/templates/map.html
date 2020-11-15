@@ -75,7 +75,15 @@ crossorigin=""></script>
                   {% for meter in meters %}
                   <div class="card">
                     <div class="card-header" id="meter{{loop.index}}">
-                      <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{loop.index}}" aria-expanded="false" aria-controls="collapse{{loop.index}}">
+                      <button class="btn btn-link
+                      {% if meter.prediction <= 0.4 %}
+                      green
+                      {% elif meter.prediction <= 0.8 %}
+                      yellow
+                      {% else %}
+                      red
+                      {% endif %}"
+                      data-toggle="collapse" data-target="#collapse{{loop.index}}" aria-expanded="false" aria-controls="collapse{{loop.index}}">
                         Meter {{meter.id}}
                       </button>
                     </div>
@@ -160,9 +168,9 @@ crossorigin=""></script>
     });
 
     meters.forEach(function(element) {
-        if(element.prediction > .1)
+        if(element.prediction <= 0.4)
             markers.push(new L.Marker([element.lat,element.lon], {icon: greenIcon}).bindPopup(element.prediction.toString()));
-        else if(element.prediction > .05)
+        else if(element.prediction <= 0.8)
             markers.push(new L.Marker([element.lat,element.lon], {icon: yellowIcon}).bindPopup(element.prediction.toString()));
         else
             markers.push(new L.Marker([element.lat,element.lon], {icon: redIcon}).bindPopup(element.prediction.toString()));

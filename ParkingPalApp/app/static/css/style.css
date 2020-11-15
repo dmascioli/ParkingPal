@@ -148,6 +148,24 @@ body {
   text-align: left;
 }
 
+.red,
+.red:hover,
+.red:focus {
+  color: #c91b30;
+}
+
+.yellow,
+.yellow:hover,
+.yellow:focus {
+  color: #c8c618;
+}
+
+.green,
+.green:hover,
+.green:focus {
+  color: #1fab1b;
+}
+
 /* Leaflet.js overrides */
 .leaflet-control-zoom.leaflet-bar.leaflet-control {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
