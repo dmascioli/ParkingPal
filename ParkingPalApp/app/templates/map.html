@@ -23,7 +23,7 @@ crossorigin=""></script>
         <!-- Mobile form -->
         <div class="d-flex d-lg-none" id="mobile-form">
           <div class="card">
-            <div class="collapse show" id="form-collapse">
+            <div class="collapse{% if not meters %} show{% endif %}" id="form-collapse">
               <div class="card-body pb-3">
                 <form method="POST" action="{{url_for('map')}}">
                   <div class="form-group">
@@ -51,7 +51,7 @@ crossorigin=""></script>
               </div>
             </div>
             <div class="card-footer py-0">
-              <button class="btn btn-link w-100 px-0" id="form-button" type="button" data-toggle="collapse" data-target="#form-collapse" aria-expanded="true" aria-controls="form-collapse">
+              <button class="btn btn-link w-100 px-0{% if meters %} collapsed{% endif %}" id="form-button" type="button" data-toggle="collapse" data-target="#form-collapse" aria-expanded="true" aria-controls="form-collapse">
                 <i class="fas fa-chevron-up"></i>
                 <i class="fas fa-chevron-down"></i>
               </button>
