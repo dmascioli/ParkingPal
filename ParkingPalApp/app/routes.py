@@ -20,13 +20,13 @@ def map():
     if form.validate_on_submit and request.method == 'POST':
         user_location = get_geolocation(form.location.data)
         radius = float(form.distance.data)
-        if radius == .1:
+        if radius == .05:
             zoom = 18
-        elif radius == .25:
+        elif radius == .075:
             zoom = 17
-        elif radius == .5:
+        elif radius == .1:
             zoom = 16
-        elif radius == .75:
+        elif radius == .15:
             zoom = 15
         else:
             zoom = 14
