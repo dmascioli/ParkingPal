@@ -23,15 +23,15 @@ def map():
         user_location = get_geolocation(form.location.data)
         radius = float(form.distance.data)
         if radius == .05:
-            zoom = 18
+            zoom = 20
         elif radius == .075:
-            zoom = 17
+            zoom = 18
         elif radius == .1:
-            zoom = 16
+            zoom = 17
         elif radius == .15:
-            zoom = 15
+            zoom = 17
         else:
-            zoom = 14
+            zoom = 16
 
         # possibly use sql instead of dataframe here
         close_meters = find_nearest_meters(user_location, radius)
