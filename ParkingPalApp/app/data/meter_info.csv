@@ -1,0 +1,59 @@
+zone,rate_description,type,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday
+301 - Sheridan Harvard Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+302 - Sheridan Kirkwood Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+304 - Tamello Beatty Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+307 - Eva Beatty Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+311 - Ansley Beatty Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+314 - Penn Circle NW Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+321 - Beacon Bartlett Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+322 - Forbes Shady Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+323 - Douglas Phillips Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+324 - Forbes Murray Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+325 - JCC/Forbes Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+328 - Ivy Bellefonte Lot,$2.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+331 - Homewood Zenith Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+334 - Taylor Street Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+335 - Friendship Cedarville Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+337 - 52nd & Butler Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+338 - 42nd & Butler Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+341 - 18th & Sidney Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+342 - East Carson Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+343 - 19th & Carson Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+344 - 18th & Carson Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+345 - 20th & Sidney Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+351 - Brownsville & Sandkey Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+354 - Walter/Warrington Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+355 - Asteroid Warrington Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+357 - Shiloh Street Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+361 - Brookline Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+363 - Beechview Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+369 - Main/Alexander Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+371 - East Ohio Street Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+375 - Oberservatory Hill Lot,$1.00/HR,off-street,22:00,22:00,22:00,22:00,22:00,22:00
+401 - Downtown 1,$4.00/HR,on-street,18:00,18:00,18:00,18:00,18:00,18:00
+402 - Downtown 2,$4.00/HR,on-street,18:00,18:00,18:00,18:00,18:00,18:00
+403 - Uptown,$1.50/HR,on-street,18:00,18:00,18:00,18:00,18:00,18:00
+404 - Strip Disctrict,$1.50/HR,on-street,18:00,18:00,18:00,18:00,18:00,18:00
+405 - Lawrenceville,$1.00/HR,on-street,18:00,18:00,18:00,18:00,18:00,18:00
+406 - Bloomfield (On-street),$1.00/HR,on-street,18:00,18:00,18:00,18:00,18:00,18:00
+407 - Oakland 1,$3.00/HR,on-street,18:00,18:00,18:00,18:00,18:00,18:00
+408 - Oakland 2,$3.00/HR,on-street,18:00,18:00,18:00,18:00,18:00,18:00
+409 - Oakland 3,$3.00/HR,on-street,18:00,18:00,18:00,18:00,18:00,18:00
+410 - Oakland 4,$3.00/HR,on-street,18:00,18:00,18:00,18:00,18:00,18:00
+411 - Shadyside,$1.50/HR,on-street,18:00,18:00,18:00,18:00,18:00,18:00
+412 - East Liberty,$1.50/HR,on-street,18:00,18:00,18:00,18:00,18:00,18:00
+413 - Squirrel Hill,$1.50/HR,on-street,18:00,18:00,18:00,18:00,18:00,18:00
+414 - Mellon Park,$1.00/HR,on-street,18:00,18:00,18:00,18:00,18:00,18:00
+415 - SS & SSW,$1.50/HR,on-street,18:00,18:00,18:00,18:00,23:59,23:59
+416 - Carrick,$0.50/HR,on-street,18:00,18:00,18:00,18:00,18:00,18:00
+417 - Allentown,$0.50/HR,on-street,18:00,18:00,18:00,18:00,18:00,18:00
+418 - Beechview,$1.00/HR,on-street,18:00,18:00,18:00,18:00,18:00,18:00
+419 - Brookline,$1.00/HR,on-street,18:00,18:00,18:00,18:00,18:00,18:00
+420 - Mt. Washington,$1.00/HR,on-street,18:00,18:00,18:00,18:00,18:00,18:00
+421 - NorthSide,$1.00/HR,on-street,18:00,18:00,18:00,18:00,18:00,18:00
+422 - Northshore,$3.00/HR,on-street,18:00,18:00,18:00,18:00,18:00,18:00
+423 - West End,$1.00/HR,on-street,18:00,18:00,18:00,18:00,18:00,18:00
+424 - Technology Drive,*SPECIAL,on-street,18:00,18:00,18:00,18:00,18:00,18:00
+425 - Bakery Sq,$2.00/HR,on-street,18:00,18:00,18:00,18:00,18:00,18:00
+426 - Hill District,$1.00/HR,on-street,18:00,18:00,18:00,18:00,18:00,18:00
+427 - Knoxville,$1.00/HR,on-street,18:00,18:00,18:00,18:00,18:00,18:00

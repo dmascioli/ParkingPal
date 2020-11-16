@@ -1,38 +1,26 @@
-{% extends 'bootstrap/base.html' %} {% block styles %} {{super()}}
+{% extends 'bootstrap/base.html' %} 
+{% block styles %} 
+  {{super()}}
+  <link rel="stylesheet" href="{{url_for('.static', filename='css/style.css')}}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.1/css/all.min.css">
+{% endblock %} 
 
-<link rel="stylesheet" href="{{url_for('.static', filename='css/style.css')}}" />
-
-{% endblock %} {% if title %}
-<title>{{ title }} - ParkingPal</title>
+{% if title %}
+  <title>{{ title }} - ParkingPal</title>
 {% else %}
-<title>Welcome to ParkingPal</title>
-{% endif %} {% block navbar %}
-<header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="{{ url_for('home') }}">ParkingPal</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-      aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="{{ url_for('map') }}">Find Parking <span class="sr-only"></span></a>
-        </li>
-      </ul>
+  <title>Welcome to ParkingPal</title>
+{% endif %} 
 
-      <!-- left aligned nav -->
-      <ul class="navbar-nav mr_auto mt-2 mt-md-0"></ul>
-    </div>
-  </nav>
-</header>
-{% endblock %} {% block content %}
-<br /><br /><br />
-<div class="container-xl">
+{% block content %}
+<div class="container-xl mt-lg-3">
+  <!-- Alert messages, if we need them -->
   {% with messages = get_flashed_messages() %} {% if messages %} {% for message
   in messages %}
   <div class="alert alert-danger" role="alert">{{ message }}</div>
-  {% endfor %} {% endif %} {% endwith %} {% block app_content %}{% endblock %}
+  {% endfor %} {% endif %} {% endwith %} 
+
+  <!-- Child content usually goes here -->
+  {% block app_content %}{% endblock %}
 </div>
 
 {% block footer %}
@@ -41,4 +29,6 @@
     <span class="text-muted">© 2020 CS1699 Group C</span>
   </div>
 </footer>
-{% endblock %} {% endblock %}
+{% endblock %} 
+
+{% endblock %}

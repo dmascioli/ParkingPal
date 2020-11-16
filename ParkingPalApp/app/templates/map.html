@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% import 'bootstrap/wtf.html' as wtf %}
 
-
 {%block app_content%}
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
@@ -11,36 +10,105 @@ crossorigin=""/>
 integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
 crossorigin=""></script>
 
-<div class="container">
+<div class="container-fluid">
 
-    <h1 style="text-align:center; margin:1em;">Where do you want to park?</h1>
-    {{ wtf.quick_form(form) }}
-    <br>
-    <div id="map" style="height: 800px;"></div>
-
-    <div id="accordion" class="mt-5">
-        {% for meter in meters %}
-        <div class="card">
-          <div class="card-header" id="meter{{loop.index}}">
-            <h5 class="mb-0">
-              <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{loop.index}}" aria-expanded="false" aria-controls="collapse{{loop.index}}">
-                Meter {{meter.id}}
+  <div class="row">
+    <!-- Desktop form -->
+    <div class="d-none d-lg-block col-lg-3 col-xl-2" id="form-column">
+      <h1 class="mb-3">Where do you want to park?</h1>
+      {{ wtf.quick_form(form) }}
+    </div>
+    <div class="col px-0">
+      <div id="map">
+        <!-- Mobile form -->
+        <div class="d-flex d-lg-none" id="mobile-form">
+          <div class="card">
+            <div class="collapse{% if not meters %} show{% endif %}" id="form-collapse">
+              <div class="card-body pb-3">
+                <form method="POST" action="{{url_for('map')}}">
+                  <div class="form-group">
+                    {{ form.location.label }} 
+                    {{ form.location(class="form-control") }}
+                  </div>
+                  <div class="form-group mb-0">
+                    <div class="row">
+                      <div class="col">
+                        {{ form.date.label }} 
+                        {{ form.date(class="form-control") }}
+                      </div>
+                      <div class="col">
+                        {{ form.time.label }} 
+                        {{ form.time(class="form-control") }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    {{ form.distance.label }} 
+                    {{ form.distance(class="form-control") }}
+                  </div>
+                  {{ form.submit(class="btn btn-primary w-100") }}
+                </form>
+              </div>
+            </div>
+            <div class="card-footer py-0">
+              <button class="btn btn-link w-100 px-0{% if meters %} collapsed{% endif %}" id="form-button" type="button" data-toggle="collapse" data-target="#form-collapse" aria-expanded="true" aria-controls="form-collapse">
+                <i class="fas fa-chevron-up"></i>
+                <i class="fas fa-chevron-down"></i>
               </button>
-            </h5>
-          </div>
-      
-          <div id="collapse{{loop.index}}" class="collapse" aria-labelledby="meter{{loop.index}}">
-            <div class="card-body">
-              <p>
-                  Lon: {{meter.lon}}<br>
-                  Lat: {{meter.lat}}<br>
-                  Prediction: {{meter.prediction}}
-              </p>
             </div>
           </div>
         </div>
-        {% endfor %}
+
+        <!-- Meter list -->
+        {% if meters %}
+        <div id="list">
+          <div class="card">
+            <div class="card-header py-0">
+              <button class="btn btn-link w-100 px-0 collapsed" id="list-button" type="button" data-toggle="collapse" data-target="#list-collapse" aria-expanded="false" aria-controls="list-collapse">
+                <i class="fas fa-chevron-up"></i>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div class="card-body py-1">
+              <div class="collapse w-100" id="list-collapse">
+                <div id="accordion" class="w-100">
+                  {% for meter in meters %}
+                  <div class="card">
+                    <div class="card-header" id="meter{{loop.index}}">
+                      <button class="btn btn-link
+                      {% if meter.prediction <= 0.4 %}
+                      green
+                      {% elif meter.prediction <= 0.8 %}
+                      yellow
+                      {% else %}
+                      red
+                      {% endif %}"
+                      data-toggle="collapse" data-target="#collapse{{loop.index}}" aria-expanded="false" aria-controls="collapse{{loop.index}}">
+                        Meter {{meter.id}}
+                      </button>
+                    </div>
+                
+                    <div id="collapse{{loop.index}}" class="collapse" aria-labelledby="meter{{loop.index}}">
+                      <div class="card-body px-0 pt-1 pb-3">
+                        <p class="mb-0">
+                            Lon: {{meter.lon}}<br>
+                            Lat: {{meter.lat}}<br>
+                            Prediction: {{meter.prediction}}<br>
+                            Price: {{meter.price}}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div> 
+            </div>
+          </div> 
+        </div>
+        {% endif %}
       </div>
+    </div>
+  </div>
 
 </div>
 
@@ -101,9 +169,9 @@ crossorigin=""></script>
     });
 
     meters.forEach(function(element) {
-        if(element.prediction > .1)
+        if(element.prediction <= 0.4)
             markers.push(new L.Marker([element.lat,element.lon], {icon: greenIcon}).bindPopup(element.prediction.toString()));
-        else if(element.prediction > .05)
+        else if(element.prediction <= 0.8)
             markers.push(new L.Marker([element.lat,element.lon], {icon: yellowIcon}).bindPopup(element.prediction.toString()));
         else
             markers.push(new L.Marker([element.lat,element.lon], {icon: redIcon}).bindPopup(element.prediction.toString()));
@@ -118,3 +186,5 @@ crossorigin=""></script>
 </script>
 
 {%endblock%}
+
+{% block footer %}{%endblock%}

@@ -1,3 +1,8 @@
+/* Global */
+body {
+  background-color: #F6F6F6;
+}
+
 /* Home */
 .jumbotron {
   background-image: linear-gradient(
@@ -10,3 +15,229 @@
   background-position: 0% 20%;
 }
 
+/* Map */
+#map {
+  height: 90vh;
+}
+
+/* Form */
+#form-column h1 {
+  font-size: 1.5rem;
+}
+
+#form-column #submit {
+  width: 100%;
+  margin-top: 1em;
+}
+
+#mobile-form {
+  position: absolute;
+  top: 0.5rem;
+  left: 0;
+  justify-content: center;
+  width: 100%;
+  z-index: 999;
+}
+
+#mobile-form > .card {
+  width: 33%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Meter List */
+#list {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  z-index: 999;
+  max-height: 80%;
+}
+
+#list > .card {
+  width: 33%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#list > .card > .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+}
+
+#list > .card > .card-header,
+#mobile-form > .card > .card-footer {
+  background-color: transparent;
+  border: none;
+}
+
+#list-button,
+#form-button {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#list-button:hover,
+#list-button:active,
+#list-button:focus,
+#form-button:hover,
+#form-button:active,
+#form-button:focus {
+  text-decoration: none;
+}
+
+#list-button::after {
+  content: 'Hide suggested meters';
+  flex-grow: 2;
+}
+
+#form-button::after {
+  content: 'Hide search form';
+  flex-grow: 2;
+}
+
+#list-button.collapsed::after {
+  content: 'Show suggested meters';
+}
+
+#form-button.collapsed::after {
+  content: 'Show search form';
+}
+
+#list-button .fa-chevron-down,
+#list-button.collapsed .fa-chevron-up {
+  display: block;
+}
+
+#form-button .fa-chevron-down,
+#form-button.collapsed .fa-chevron-up {
+  display: none;
+}
+
+#list-button .fa-chevron-up,
+#list-button.collapsed .fa-chevron-down {
+  display: none;
+}
+
+#form-button .fa-chevron-up,
+#form-button.collapsed .fa-chevron-down {
+  display: block;
+}
+
+#list-collapse #accordion .card {
+  border: none;
+  border-top: 1px solid rgba(0,0,0,.25);
+  border-radius: 0;
+}
+
+#list-collapse #accordion .card-header {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
+
+#list-collapse #accordion .card-header button {
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding: 0;
+  width: 100%;
+  text-align: left;
+}
+
+.red,
+.red:hover,
+.red:focus {
+  color: #c91b30;
+}
+
+.yellow,
+.yellow:hover,
+.yellow:focus {
+  color: #c8c618;
+}
+
+.green,
+.green:hover,
+.green:focus {
+  color: #1fab1b;
+}
+
+/* Leaflet.js overrides */
+.leaflet-control-zoom.leaflet-bar.leaflet-control {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  border: none;
+}
+
+.leaflet-control-attribution.leaflet-control {
+  /* ALWAYS attribute authors in production, hiding for now */
+  display: none;
+}
+
+#map.leaflet-container {
+  font-size: 1rem;
+}
+
+/* Responsiveness */
+@media (max-width: 1199px) {
+  #list > .card,
+  #mobile-form > .card {
+    width: 50%;
+  }
+
+}
+
+@media (max-width: 991px) {
+  #list > .card > .card-body,
+  #mobile-form .card-body,
+  #list > .card > .card-header,
+  #mobile-form .card-footer {
+    padding: 0.5rem;
+  }
+  
+  #map.leaflet-container {
+    font-size: 0.75rem;
+  }
+
+  #mobile-form .form-group {
+    margin-bottom: 0.5rem;
+  }
+
+  #mobile-form .col {
+    margin-bottom: 0.5rem;
+  }
+
+  #mobile-form .form-control,
+  #mobile-form .btn {
+    padding: .1rem .5rem;
+  }
+
+  #mobile-form label {
+    margin-bottom: 0.25rem;
+  }
+
+  #mobile-form #submit {
+    margin-top: 0.25em;
+  }
+
+  #list-collapse #accordion .card-header button {
+    font-size: 1rem;
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+
+  #list {
+    max-height: 40%;
+  }
+
+}
+
+@media (max-width: 575px) {
+  #mobile-form > .card,
+  #list > .card {
+    width: 70%;
+  }
+}
