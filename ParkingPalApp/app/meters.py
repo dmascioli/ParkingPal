@@ -73,10 +73,11 @@ async def get_prediction_function(inputs, meter):
         model_display_name=app.config['MODEL_DISPLAY_NAME'],
         inputs=inputs
     ).payload[0].tables.value
-
+    price = get_price(inputs)
     meters.append(
         {'id': meter['id'], 'lat': meter['lat'],
-         'lon': meter['lon'], 'prediction': prediction})
+         'lon': meter['lon'], 'prediction': prediction,
+         'price': price})
 
 
 async def async_get_meter_predictions(close_meters, day, month, time):
