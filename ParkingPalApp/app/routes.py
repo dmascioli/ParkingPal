@@ -66,6 +66,9 @@ def map():
         meter_availability = asyncio.run(async_get_meter_predictions(
             close_meters, day, month, time, is_holiday))
 
+        # sort ASC by prediction value
+        meter_availability = sorted(meter_availability, key=lambda meter: meter['prediction'])
+
         # meter_availability = thread_get_meter_predictions(
         #     close_meters, day, month, time)
     return render_template("map.html", form=form, user_location=user_location, zoom=zoom, meters=meter_availability)
