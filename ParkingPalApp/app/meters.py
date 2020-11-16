@@ -38,7 +38,7 @@ def get_geolocation(street_address):
 def find_nearest_meters(user_location, radius):
     radius = radius/69.2  # ~69.2 miles to 1 decimal degree
 
-    meter_locations = df.loc[:, [
+    meter_locations = meter_data.loc[:, [
         'id', 'latitude', 'longitude', 'status']].iterrows()
     close_meters = []
 
