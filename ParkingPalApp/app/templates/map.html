@@ -15,7 +15,7 @@ crossorigin=""></script>
   <div class="row">
     <!-- Desktop form -->
     <div class="d-none d-lg-block col-lg-3 col-xl-2" id="form-column">
-      <h1 class="mb-3">Where do you want to park?</h1>
+      <h1 class="mb-3 mt-2">Where do you want to park?</h1>
       {{ wtf.quick_form(form) }}
     </div>
     <div class="col px-0">
@@ -131,6 +131,10 @@ crossorigin=""></script>
 </div>
 
 <script type="text/javascript">
+    // hacky fix for map height bugs
+    var height = window.innerHeight;
+    document.getElementById('map').style.height = height + 'px';
+
     // The first parameter are the coordinates of the center of the map
     // The second parameter is the zoom level
     loc = {{user_location | tojson }};

@@ -15,11 +15,6 @@ body {
   background-position: 0% 20%;
 }
 
-/* Map */
-#map {
-  height: 90vh;
-}
-
 /* Form */
 #form-column h1 {
   font-size: 1.5rem;
