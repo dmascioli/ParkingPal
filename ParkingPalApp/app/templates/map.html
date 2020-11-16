@@ -90,12 +90,30 @@ crossorigin=""></script>
                 
                     <div id="collapse{{loop.index}}" class="collapse" aria-labelledby="meter{{loop.index}}">
                       <div class="card-body px-0 pt-1 pb-3">
-                        <p class="mb-0">
-                            Lon: {{meter.lon}}<br>
-                            Lat: {{meter.lat}}<br>
-                            Predicted Availability: {{ meter.prediction }}%<br>
+                        <div class="row">
+                          <div class="col-1">
+                            <i class="fas fa-parking"></i>
+                          </div>
+                          <div class="col">
+                            Predicted Availability: {{ meter.prediction }}%
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-1">
+                            <i class="fas fa-dollar-sign"></i>
+                          </div>
+                          <div class="col">
                             Price: {{meter.price}}
-                        </p>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-1">
+                            <i class="fas fa-map-marked-alt"></i>
+                          </div>
+                          <div class="col">
+                            <a href="https://maps.google.com/maps?q={{meter.lat}},{{meter.lon}}" target="_blank">Directions</a>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
