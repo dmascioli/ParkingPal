@@ -6,4 +6,4 @@ class Config:
     # for AutoML Tables integration
     PROJECT_ID = 'pittparkingpal'
     COMPUTE_REGION = 'us-central1'
-    MODEL_DISPLAY_NAME = 'oakland_meter_non_20201014023202'
+    MODEL_DISPLAY_NAME = 'oakland_non_zero__20201108125857'

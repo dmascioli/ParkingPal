@@ -5,7 +5,8 @@ from app.forms import FindParkingForm
 from app.meters import find_nearest_meters, get_geolocation, get_prediction, get_zone, async_get_meter_predictions, thread_get_meter_predictions
 import asyncio
 import datetime
-
+import pandas as pd
+from pandas.tseries.holiday import USFederalHolidayCalendar as calendar
 
 @app.route("/")
 def home():
@@ -52,11 +53,18 @@ def map():
 
         day = day_name[form.date.data.weekday()]
         month = f'{form.date.data.month:02}'
-        time = form.time.data.isoformat()
+        
+        date = str(form.date.data)
+        cal = calendar()
+        holidays = cal.holidays('2020-01-01', '2020-12-31')
+        is_holiday = str(pd.to_datetime(date).to_datetime64() in holidays)
 
+        time = form.time.data.isoformat()
+        time = str(pd.to_datetime(str(time)).round('10min').time())
+       
         # async for slightly better speed boost
         meter_availability = asyncio.run(async_get_meter_predictions(
-            close_meters, day, month, time))
+            close_meters, day, month, time, is_holiday))
 
         # meter_availability = thread_get_meter_predictions(
         #     close_meters, day, month, time)

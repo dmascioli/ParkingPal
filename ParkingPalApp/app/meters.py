@@ -80,14 +80,14 @@ async def get_prediction_function(inputs, meter):
          'price': price})
 
 
-async def async_get_meter_predictions(close_meters, day, month, time):
+async def async_get_meter_predictions(close_meters, day, month, time, is_holiday):
     tasks = []
     meters.clear()
 
     for meter in close_meters:
         meter_req = {
             'day_of_week': day,
-            'is_holiday': str(False),
+            'is_holiday': is_holiday,
             'meter': meter['id'],
             'month': month,
             'time': time,
