@@ -15,7 +15,7 @@ crossorigin=""></script>
   <div class="row">
     <!-- Desktop form -->
     <div class="d-none d-lg-block col-lg-3 col-xl-2" id="form-column">
-      <h1 class="mb-3">Where do you want to park?</h1>
+      <h1 class="mb-3 mt-2">Where do you want to park?</h1>
       {{ wtf.quick_form(form) }}
     </div>
     <div class="col px-0">
@@ -76,9 +76,9 @@ crossorigin=""></script>
                   <div class="card">
                     <div class="card-header" id="meter{{loop.index}}">
                       <button class="btn btn-link
-                      {% if meter.prediction <= 0.4 %}
+                      {% if meter.prediction >= 50 %}
                       green
-                      {% elif meter.prediction <= 0.8 %}
+                      {% elif meter.prediction > 25 %}
                       yellow
                       {% else %}
                       red
@@ -90,12 +90,30 @@ crossorigin=""></script>
                 
                     <div id="collapse{{loop.index}}" class="collapse" aria-labelledby="meter{{loop.index}}">
                       <div class="card-body px-0 pt-1 pb-3">
-                        <p class="mb-0">
-                            Lon: {{meter.lon}}<br>
-                            Lat: {{meter.lat}}<br>
-                            Prediction: {{meter.prediction}}<br>
+                        <div class="row">
+                          <div class="col-1">
+                            <i class="fas fa-parking"></i>
+                          </div>
+                          <div class="col">
+                            Predicted Availability: {{ meter.prediction }}%
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-1">
+                            <i class="fas fa-dollar-sign"></i>
+                          </div>
+                          <div class="col">
                             Price: {{meter.price}}
-                        </p>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-1">
+                            <i class="fas fa-map-marked-alt"></i>
+                          </div>
+                          <div class="col">
+                            <a href="https://maps.google.com/maps?q={{meter.lat}},{{meter.lon}}" target="_blank">Directions</a>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -113,6 +131,10 @@ crossorigin=""></script>
 </div>
 
 <script type="text/javascript">
+    // hacky fix for map height bugs
+    var height = window.innerHeight;
+    document.getElementById('map').style.height = height + 'px';
+
     // The first parameter are the coordinates of the center of the map
     // The second parameter is the zoom level
     loc = {{user_location | tojson }};
@@ -142,7 +164,7 @@ crossorigin=""></script>
     });
 
     var yellowIcon = new L.Icon({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-yellow.png',
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-gold.png',
         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
         iconSize: [25, 41],
         iconAnchor: [12, 41],
@@ -169,12 +191,12 @@ crossorigin=""></script>
     });
 
     meters.forEach(function(element) {
-        if(element.prediction <= 0.4)
-            markers.push(new L.Marker([element.lat,element.lon], {icon: greenIcon}).bindPopup(element.prediction.toString()));
-        else if(element.prediction <= 0.8)
-            markers.push(new L.Marker([element.lat,element.lon], {icon: yellowIcon}).bindPopup(element.prediction.toString()));
+        if(element.prediction >= 50)
+            markers.push(new L.Marker([element.lat,element.lon], {icon: greenIcon}).bindPopup(element.prediction.toString() + '%'));
+        else if(element.prediction > 25)
+            markers.push(new L.Marker([element.lat,element.lon], {icon: yellowIcon}).bindPopup(element.prediction.toString() + '%'));
         else
-            markers.push(new L.Marker([element.lat,element.lon], {icon: redIcon}).bindPopup(element.prediction.toString()));
+            markers.push(new L.Marker([element.lat,element.lon], {icon: redIcon}).bindPopup(element.prediction.toString() + '%'));
         markers[markers.length - 1].addTo(map);
     });
     

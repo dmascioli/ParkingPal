@@ -23,15 +23,15 @@ def map():
         user_location = get_geolocation(form.location.data)
         radius = float(form.distance.data)
         if radius == .05:
-            zoom = 18
+            zoom = 20
         elif radius == .075:
-            zoom = 17
+            zoom = 18
         elif radius == .1:
-            zoom = 16
+            zoom = 17
         elif radius == .15:
-            zoom = 15
+            zoom = 17
         else:
-            zoom = 14
+            zoom = 16
 
         # possibly use sql instead of dataframe here
         close_meters = find_nearest_meters(user_location, radius)
@@ -51,6 +51,7 @@ def map():
         #     meter_availability.append(
         #         {'id': meter['id'], 'lat': meter['lat'], 'lon': meter['lon'], 'prediction': prediction})
 
+        # check if day is a holiday and round to 10 minute interval
         day = day_name[form.date.data.weekday()]
         month = f'{form.date.data.month:02}'
         
@@ -65,6 +66,9 @@ def map():
         # async for slightly better speed boost
         meter_availability = asyncio.run(async_get_meter_predictions(
             close_meters, day, month, time, is_holiday))
+
+        # sort ASC by prediction value
+        meter_availability = sorted(meter_availability, key=lambda meter: meter['prediction'], reverse=True)
 
         # meter_availability = thread_get_meter_predictions(
         #     close_meters, day, month, time)

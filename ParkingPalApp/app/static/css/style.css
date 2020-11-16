@@ -15,11 +15,6 @@ body {
   background-position: 0% 20%;
 }
 
-/* Map */
-#map {
-  height: 90vh;
-}
-
 /* Form */
 #form-column h1 {
   font-size: 1.5rem;
@@ -151,19 +146,19 @@ body {
 .red,
 .red:hover,
 .red:focus {
-  color: #c91b30;
+  color:#CB2B3E;
 }
 
 .yellow,
 .yellow:hover,
 .yellow:focus {
-  color: #c8c618;
+  color: #FFD326;
 }
 
 .green,
 .green:hover,
 .green:focus {
-  color: #1fab1b;
+  color: #2AAD27;
 }
 
 /* Leaflet.js overrides */
