@@ -76,9 +76,9 @@ crossorigin=""></script>
                   <div class="card">
                     <div class="card-header" id="meter{{loop.index}}">
                       <button class="btn btn-link
-                      {% if meter.prediction >= 60 %}
+                      {% if meter.prediction >= 50 %}
                       green
-                      {% elif meter.prediction >= 20 %}
+                      {% elif meter.prediction > 25 %}
                       yellow
                       {% else %}
                       red
@@ -142,7 +142,7 @@ crossorigin=""></script>
     });
 
     var yellowIcon = new L.Icon({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-yellow.png',
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-gold.png',
         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
         iconSize: [25, 41],
         iconAnchor: [12, 41],
@@ -169,12 +169,12 @@ crossorigin=""></script>
     });
 
     meters.forEach(function(element) {
-        if(element.prediction >= 60)
-            markers.push(new L.Marker([element.lat,element.lon], {icon: greenIcon}).bindPopup(element.prediction.toString()));
-        else if(element.prediction >= 20)
-            markers.push(new L.Marker([element.lat,element.lon], {icon: yellowIcon}).bindPopup(element.prediction.toString()));
+        if(element.prediction >= 50)
+            markers.push(new L.Marker([element.lat,element.lon], {icon: greenIcon}).bindPopup(element.prediction.toString() + '%'));
+        else if(element.prediction > 25)
+            markers.push(new L.Marker([element.lat,element.lon], {icon: yellowIcon}).bindPopup(element.prediction.toString() + '%'));
         else
-            markers.push(new L.Marker([element.lat,element.lon], {icon: redIcon}).bindPopup(element.prediction.toString()));
+            markers.push(new L.Marker([element.lat,element.lon], {icon: redIcon}).bindPopup(element.prediction.toString() + '%'));
         markers[markers.length - 1].addTo(map);
     });
     
