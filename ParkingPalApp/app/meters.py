@@ -74,10 +74,13 @@ async def get_prediction_function(inputs, meter):
         inputs=inputs
     ).payload[0].tables.value
     price = get_price(inputs)
-    meters.append(
-        {'id': meter['id'], 'lat': meter['lat'],
-         'lon': meter['lon'], 'prediction': prediction,
-         'price': price})
+    meters.append({
+        'id': meter['id'],
+        'lat': meter['lat'],
+        'lon': meter['lon'],
+        'prediction': int((1.0 - prediction) * 100),
+        'price': price
+    })
 
 
 async def async_get_meter_predictions(close_meters, day, month, time, is_holiday):

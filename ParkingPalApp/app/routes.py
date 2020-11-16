@@ -51,6 +51,7 @@ def map():
         #     meter_availability.append(
         #         {'id': meter['id'], 'lat': meter['lat'], 'lon': meter['lon'], 'prediction': prediction})
 
+        # check if day is a holiday and round to 10 minute interval
         day = day_name[form.date.data.weekday()]
         month = f'{form.date.data.month:02}'
         
@@ -67,7 +68,7 @@ def map():
             close_meters, day, month, time, is_holiday))
 
         # sort ASC by prediction value
-        meter_availability = sorted(meter_availability, key=lambda meter: meter['prediction'])
+        meter_availability = sorted(meter_availability, key=lambda meter: meter['prediction'], reverse=True)
 
         # meter_availability = thread_get_meter_predictions(
         #     close_meters, day, month, time)

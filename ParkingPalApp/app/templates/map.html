@@ -76,9 +76,9 @@ crossorigin=""></script>
                   <div class="card">
                     <div class="card-header" id="meter{{loop.index}}">
                       <button class="btn btn-link
-                      {% if meter.prediction <= 0.4 %}
+                      {% if meter.prediction >= 60 %}
                       green
-                      {% elif meter.prediction <= 0.8 %}
+                      {% elif meter.prediction >= 20 %}
                       yellow
                       {% else %}
                       red
@@ -93,8 +93,8 @@ crossorigin=""></script>
                         <p class="mb-0">
                             Lon: {{meter.lon}}<br>
                             Lat: {{meter.lat}}<br>
-                            Prediction: {{meter.prediction}}<br>
-                            Price: {{meter.price}}
+                            Predicted Availability: {{ meter.prediction }}%<br>
+                            Current Price: {{meter.price}}
                         </p>
                       </div>
                     </div>
@@ -169,9 +169,9 @@ crossorigin=""></script>
     });
 
     meters.forEach(function(element) {
-        if(element.prediction <= 0.4)
+        if(element.prediction >= 60)
             markers.push(new L.Marker([element.lat,element.lon], {icon: greenIcon}).bindPopup(element.prediction.toString()));
-        else if(element.prediction <= 0.8)
+        else if(element.prediction >= 20)
             markers.push(new L.Marker([element.lat,element.lon], {icon: yellowIcon}).bindPopup(element.prediction.toString()));
         else
             markers.push(new L.Marker([element.lat,element.lon], {icon: redIcon}).bindPopup(element.prediction.toString()));
